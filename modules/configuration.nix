@@ -37,10 +37,6 @@
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/nvme1n1"; # or "nodev" for efi only
 
   networking.hostName = "pone-drone-hypervisor"; # Define your hostname.
@@ -57,11 +53,10 @@
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
+  console = {
+    keyMap = "uk";
+    # useXkbConfig = true; # use xkb.options in tty.
+  };
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
@@ -76,25 +71,14 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.alice = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     tree
-  #   ];
-  # };
+  users.users.frey = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  };
+  users.users.ceph = {
+    isNormalUser = true;
+  };
 
   # programs.firefox.enable = true;
 
@@ -125,7 +109,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = [
+  users.users.frey.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILS1Gr8OBAemjzv4waPFvNpjXUOAYpIBLZlBiQyrnukO frey@Freys-PC"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO4K1vjPKr/icU02JDcFhV2bocgmFZseMRahZygD4pup frey@FreysLaptop"
   ];
