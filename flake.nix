@@ -11,5 +11,11 @@
 
     packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
 
+    nixosConfigurations.hetzner = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./modules/configuration.nix
+      ];
+    }; 
   };
 }

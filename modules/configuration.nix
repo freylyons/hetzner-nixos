@@ -9,6 +9,9 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   systemd.network = {
     enable = true;
     networks."30-wan" = {
